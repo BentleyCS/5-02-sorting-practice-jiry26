@@ -5,17 +5,48 @@ def bubbleSort(items:list):
     swaps = 0
     comparisons = 0
 
+    while True:
+        swapsInLoop = 0
+        for i in range(0, len(items) -1):
+            comparisons += 1
+            if items[i] > items[i+1]:
+                items[i], items[i+1] = items[i+1], items[i]
+                swaps +=1
+                swapsInLoop += 1
+        if swapsInLoop ==0:
+            break
+
     return items, swaps, comparisons
 
 def insertionSort(items: list):
     swaps = 0
     comparisons = 0
-
+    for i in range(1, len(items)):
+        key = items[i]
+        j = i - 1
+        while j >= 0:
+            comparisons += 1
+            if items[j] > key:
+                items[j + 1] = items[j]
+                swaps += 1
+                j -= 1
+            else:
+                break
+        items[j+1] = key
     return items, swaps, comparisons
 
 def selectionSort(items : list):
     swaps = 0
     comparisons = 0
+
+    for i in range(0, len(items)-1):
+        nextSmallestPossible = i
+        for j in range (i+1, len(items)):
+            comparisons += 1
+            if items[j] < items[nextSmallestPossible]:
+                nextSmallestPossible = j
+        items[i], items[nextSmallestPossible] = items[nextSmallestPossible], items[i]
+        swaps += 1
 
     return items, swaps, comparisons
 
